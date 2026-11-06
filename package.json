@@ -1,0 +1,22 @@
+{
+  "name": "digital-ic-trainer",
+  "version": "1.0.0",
+  "description": "3D Digital IC Trainer Lab - Wire logic ICs on a breadboard and verify circuits",
+  "scripts": {
+    "test": "node test-circuits.mjs && node test-ui.mjs",
+    "test:circuits": "node test-circuits.mjs",
+    "test:ui": "node test-ui.mjs"
+  },
+  "keywords": [
+    "digital-electronics",
+    "ic-trainer",
+    "threejs",
+    "logic-gates",
+    "breadboard"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "playwright": "^1.65.0"
+  }
+}

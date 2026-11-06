@@ -53,19 +53,19 @@ server.listen(0, '127.0.0.1', async () => {
     const initialText = qbtn.textContent;
     const initialLS = localStorage.getItem('trainer_quality');
 
-    // 1st click -> low
+    // 1st click -> medium
     qbtn.click();
     const text1 = qbtn.textContent;
     const ls1 = localStorage.getItem('trainer_quality');
     const pr1 = window.__pr;
-    const castShadow1 = window.__keyLight ? window.__keyLight.castShadow : null;
+    const shadowMapSize1 = window.__keyLight ? window.__keyLight.shadow.mapSize.x : null;
 
-    // 2nd click -> medium
+    // 2nd click -> low
     qbtn.click();
     const text2 = qbtn.textContent;
     const ls2 = localStorage.getItem('trainer_quality');
     const pr2 = window.__pr;
-    const shadowMapSize2 = window.__keyLight ? window.__keyLight.shadow.mapSize.x : null;
+    const castShadow2 = window.__keyLight ? window.__keyLight.castShadow : null;
 
     // 3rd click -> high
     qbtn.click();
@@ -77,8 +77,8 @@ server.listen(0, '127.0.0.1', async () => {
     return {
       initialText,
       initialLS,
-      step1: { text: text1, ls: ls1, pr: pr1, castShadow: castShadow1 },
-      step2: { text: text2, ls: ls2, pr: pr2, shadowMapSize: shadowMapSize2 },
+      step1: { text: text1, ls: ls1, pr: pr1, shadowMapSize: shadowMapSize1 },
+      step2: { text: text2, ls: ls2, pr: pr2, castShadow: castShadow2 },
       step3: { text: text3, ls: ls3, pr: pr3, shadowMapSize: shadowMapSize3 }
     };
   });
@@ -174,8 +174,8 @@ server.listen(0, '127.0.0.1', async () => {
   console.log('Page Meta:', JSON.stringify(meta, null, 2));
 
   const allPassed =
-    qTest.step1.ls === 'low' &&
-    qTest.step2.ls === 'medium' &&
+    qTest.step1.ls === 'medium' &&
+    qTest.step2.ls === 'low' &&
     qTest.step3.ls === 'high' &&
     helpTest.visible &&
     helpTest.hiddenAfterClose &&

@@ -2,6 +2,14 @@
 
 All notable changes to the 3D Digital IC Trainer web application are documented below.
 
+## [1.1.2] - 2026-11-06
+
+### Visual Quality & Motion Smoothness
+- **Smooth Orbit Controls (Damping)**: Enabled inertia damping on OrbitControls (`enableDamping: true`, `dampingFactor: 0.08`), eliminating jittery, step-by-step camera jumps during mouse and trackpad rotation.
+- **Fixed Adaptive Resolution Trap**: Fixed a bug where a 60 Hz VSync display (16.67ms frame time) could never satisfy the hardcoded `avg < 15ms` recovery condition once downscaled, permanently trapping rendering at degraded 0.70x resolution. Raised recovery threshold to `avg <= 20ms` and stability check to `avg > 30ms`.
+- **Permanent WebGL Context Antialiasing**: Ensured the WebGL context is initialized with antialiasing enabled (`antialias: true`), avoiding permanent loss of antialiasing when switching quality profiles.
+- **Natural Quality Cycle & Feedback**: Fixed quality cycle order to High → Medium → Low → High (preventing an instant drop from High to Low on first click), raised Low profile pixel ratio floor to 0.85, and added detailed toast notifications explaining the active resolution and shadow settings.
+
 ## [1.1.1] - 2026-11-06
 
 ### Responsive Dock & Layout Improvements

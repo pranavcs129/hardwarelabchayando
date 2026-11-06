@@ -2,6 +2,14 @@
 
 All notable changes to the 3D Digital IC Trainer web application are documented below.
 
+## [1.1.1] - 2026-11-06
+
+### Responsive Dock & Layout Improvements
+- **Centered Floating Dock**: Updated the bottom toolbar dock (`#bar`) on laptops and wide desktop screens to shrink-wrap its contents (`width: max-content; max-width: calc(100vw - 16px)`) and horizontally center at `left: 50%; transform: translateX(-50%)`.
+- **Removed Excess Unused Space**: Replaced full-width edge-to-edge spanning (`left: 10px; right: 10px`) with content-based sizing (`#bxchips` with `flex: 0 1 auto; min-width: 0`), eliminating ~578px of unused empty space to the right of the IC buttons on laptop displays.
+- **Drawer Animation Compatibility**: Updated drawer toggle styling so `body.bxon #bar` translates smoothly downwards off-screen using `translate(-50%, 120%)`.
+- **Automated Dock Testing**: Added automated assertions to `test-ui.mjs` verifying that the dock is centered and free of dead space on desktop and mobile viewports.
+
 ## [1.1.0] - 2026-11-06
 
 ### Performance & Asset Optimization (Vercel Deployment)

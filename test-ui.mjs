@@ -113,18 +113,42 @@ server.listen(0, '127.0.0.1', async () => {
   });
   console.log('Help Modal Results:', JSON.stringify(helpTest, null, 2));
 
+  console.log('--- 2b. Testing Desktop Dock Centering and Fit ---');
+  const desktopDock = await page.evaluate(() => {
+    const bar = document.getElementById('bar');
+    const r = bar.getBoundingClientRect();
+    const chips = document.getElementById('bxchips');
+    const lastChip = chips.lastElementChild;
+    const lr = lastChip.getBoundingClientRect();
+    const leftMargin = Math.round(r.left);
+    const rightMargin = Math.round(window.innerWidth - r.right);
+    return {
+      barWidth: Math.round(r.width),
+      leftMargin,
+      rightMargin,
+      unusedSpaceOnRight: Math.round(r.right - lr.right),
+      isCentered: Math.abs(leftMargin - rightMargin) <= 3,
+      noExcessSpace: (r.right - lr.right) < 20
+    };
+  });
+  console.log('Desktop Dock Results:', JSON.stringify(desktopDock, null, 2));
+
   console.log('--- 3. Testing Mobile 400x800 Viewport ---');
   await page.setViewportSize({ width: 400, height: 800 });
   await page.waitForTimeout(200);
 
   const mobileLayout = await page.evaluate(() => {
     const bar = document.getElementById('bar');
+    const r = bar.getBoundingClientRect();
     const st = document.getElementById('st');
     const qbtn = document.getElementById('qbtn');
     const helpbtn = document.getElementById('helpbtn');
     const lchip = document.getElementById('lchip');
+    const leftMargin = Math.round(r.left);
+    const rightMargin = Math.round(window.innerWidth - r.right);
     return {
       barVisible: !!bar && bar.offsetHeight > 0,
+      isCentered: Math.abs(leftMargin - rightMargin) <= 2,
       stVisible: !!st && st.offsetHeight > 0,
       qbtnVisible: !!qbtn && qbtn.offsetWidth > 0,
       helpbtnVisible: !!helpbtn && helpbtn.offsetWidth > 0,
@@ -161,6 +185,9 @@ server.listen(0, '127.0.0.1', async () => {
     helpTest.mentionsRemove &&
     helpTest.mentionsUndo &&
     helpTest.mentionsClear &&
+    desktopDock.isCentered &&
+    desktopDock.noExcessSpace &&
+    mobileLayout.isCentered &&
     mobileLayout.barVisible &&
     mobileLayout.qbtnVisible &&
     mobileLayout.helpbtnVisible;

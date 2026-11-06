@@ -87,3 +87,4 @@ npx vercel --prod
 ## 📄 License
 
 MIT License. See [CHANGELOG.md](CHANGELOG.md) for version history.
+

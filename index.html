@@ -5013,7 +5013,8 @@ css.textContent=`
 #bxs{bottom:calc(var(--barh,100px) + 6px)!important}
 
 /* toolbar v3: floating glass dock */
-#bar{left:10px!important;right:10px!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;padding:8px!important;gap:8px!important;border-radius:24px!important;border:1px solid #ffffff22!important;background:linear-gradient(160deg,#1a2536cc,#0a0f18d9)!important;-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 12px 32px #000b,inset 0 1px 0 #ffffff26!important}
+#bar{left:50%!important;right:auto!important;transform:translateX(-50%)!important;width:max-content!important;max-width:calc(100vw - 16px)!important;box-sizing:border-box!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;padding:8px!important;gap:8px!important;border-radius:24px!important;border:1px solid #ffffff22!important;background:linear-gradient(160deg,#1a2536cc,#0a0f18d9)!important;-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 12px 32px #000b,inset 0 1px 0 #ffffff26!important;transition:transform .35s,opacity .35s}
+body.bxon #bar{transform:translate(-50%,120%)!important;opacity:0!important;pointer-events:none!important}
 #bxact{background:#ffffff0f!important;border-radius:16px!important;padding:3px!important;gap:2px!important;border:1px solid #ffffff14}
 #bxact button.act{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:13px!important;flex-direction:column!important;gap:1px!important;min-height:44px!important;font:600 10.5px system-ui!important;letter-spacing:.04em;text-transform:uppercase;color:#aab8c8!important}
 #bxact button.act span{font-size:19px;line-height:1}
@@ -5043,7 +5044,7 @@ css.textContent=`
 #bxact{width:auto!important;flex:none!important;padding:2px!important;gap:0!important;border-radius:15px!important}
 #bxact button.act{flex:none!important;width:38px!important;min-width:38px!important;min-height:38px!important;height:38px!important;padding:0!important;font-size:0!important;border-radius:12px!important}
 #bxact button.act span{font-size:18px!important}
-#bxchips{flex:1!important;min-width:0!important;gap:5px!important}
+#bxchips{flex:0 1 auto!important;min-width:0!important;gap:5px!important}
 #bxchips button{width:52px!important;min-width:52px!important;height:42px!important;min-height:42px!important;border-radius:13px!important;gap:1px!important}
 #bxchips button b{font-size:13px}
 #bxchips button em{font-size:8px}

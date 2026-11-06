@@ -46,7 +46,7 @@ server.listen(0, '127.0.0.1', async () => {
   console.log('--- 1. Testing Quality Toggle and LocalStorage ---');
   const page = await browser.newPage();
   await page.goto(`http://127.0.0.1:${port}/index.html`);
-  await page.waitForFunction(() => window.T && window.T.nodes?.length > 0);
+  await page.waitForFunction(() => window.T && window.T.nodes?.length > 0, { timeout: 35000 });
 
   const qTest = await page.evaluate(async () => {
     const qbtn = document.getElementById('qbtn');

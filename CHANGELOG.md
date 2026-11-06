@@ -7,6 +7,11 @@ All notable changes to the 3D Digital IC Trainer web application are documented 
 ### Step-by-Step Lab Guide Wire Checker Bug Fix
 - **Fixed Out-of-Bounds Evaluation on Partial Input Wiring**: Fixed a bug in `gnets` where input switch connections (`in0`, `in1`, `in2`) were evaluated by filtering strictly for switches already wired to an IC (`filter(c => pn.has(x.e(c.key)))`). In experiments like **SOP using NAND** where Gate 1 connects `in0` (`x2`) and `in2` (`x0`) before `in1` (`x1`), only 2 switches were wired. Evaluating `in2` attempted to read index 2 of a 2-element array (`[0, 2][2]`), which returned `undefined` and caused `gnets('in2')` to evaluate to `[]`. This caused Wire 2 (`Switch x0 -> NAND pin 2`) to remain unverified ("not connected") even when correctly placed.
 - **Robust Relative & Direct Switch Fallback**: Updated `gnets` so intermediate steps directly match the designated switch index (`idx = req`) while preserving relative ordering once all required switches are connected, allowing both SOP and POS guided experiments to validate every step in real time.
+- **Updated POS NOR Guided Wiring**: In the POS using NOR experiment guide, updated Gate 1 wiring so switch `x1` connects to input 1 (pin 2), followed by a direct jumper from input 1 (pin 2) to input 2 (pin 3) rather than two separate wires from the switch post. The guide card, chip SVG pin tags, and instructions now guide students through:
+  1. Gate 1 inverter: `x1 -> Pin 2`, then `Pin 2 -> Pin 3` (output is Pin 1).
+  2. Gate 2: `Pin 1 -> Pin 6`, then `x0 -> Pin 5` (output is Pin 4).
+  3. Gate 3: `Pin 1 -> Pin 8`, then `x2 -> Pin 9` (output is Pin 10).
+  4. Gate 4: `Pin 4 -> Pin 11`, `Pin 10 -> Pin 12`, and `Pin 13 -> LED F`.
 
 ### Lighting Balance & Reflection Visibility
 - **Softened Overpowering Direct Lighting**: Reduced harsh spotlight hotspot intensity (`KEY_I` from 225 to 155), lowered ceiling point lights (`PANEL_I` from 48 to 32), and tuned tone mapping exposure from 0.92 to 0.85 to prevent washed-out whites and glare on the breadboard and desk.

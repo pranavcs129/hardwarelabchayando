@@ -124,9 +124,15 @@ export async function testCircuit(expId, port) {
       T.addWire(pinNode(14), v5Node);
       T.addWire(pinNode(7), gndNode);
 
-      // Gate 1 (inverter): x1 -> pin 2 and pin 3
+      // Gate 1 (inverter): x1 -> pin 2, then pin 2 -> pin 3
       T.addWire(swNode(1), pinNode(2));
       T.addWire(pinNode(2), pinNode(3));
+
+      // Verify guide successfully verified both wires and advanced past Gate 1 (Step 3)
+      const gdTextPos = document.getElementById('gd')?.innerText || '';
+      if (!gdTextPos.includes('Gate 2') && !gdTextPos.includes('Step 4')) {
+        return { ok: false, error: 'Guide failed to verify POS Gate 1 (pin 2 -> pin 3): ' + gdTextPos.slice(0, 200) };
+      }
 
       // Gate 2: pin 1 -> pin 6, x0 -> pin 5
       T.addWire(pinNode(1), pinNode(6));

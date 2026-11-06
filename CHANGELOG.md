@@ -2,6 +2,13 @@
 
 All notable changes to the 3D Digital IC Trainer web application are documented below.
 
+## [1.1.3] - 2026-11-06
+
+### Lighting Balance & Reflection Visibility
+- **Softened Overpowering Direct Lighting**: Reduced harsh spotlight hotspot intensity (`KEY_I` from 225 to 155), lowered ceiling point lights (`PANEL_I` from 48 to 32), and tuned tone mapping exposure from 0.92 to 0.85 to prevent washed-out whites and glare on the breadboard and desk.
+- **Enhanced Environment & Specular Reflections**: Doubled scene environment map intensity (`Vt.environmentIntensity` from 0.42 to 0.85) and increased material environment reflection intensity in `__tameGloss` (metals from 0.5 to 1.0, non-metals from 0.3 to 0.8).
+- **Realistic PBR Surface Gloss**: Lowered overly restrictive roughness clamping floors across breadboard plastic, solder mask, switches, and screws, revealing clear, realistic specular reflections of the lab environment while keeping all pinout and IC labels legible.
+
 ## [1.1.2] - 2026-11-06
 
 ### Visual Quality & Motion Smoothness

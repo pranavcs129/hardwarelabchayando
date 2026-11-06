@@ -5182,7 +5182,9 @@ const gnets=(ep,x,pn)=>{
   if(ep==='5V')return x.t('v5').map(c=>x.e(c.key));
   if(ep==='GND')return x.t('gnd').map(c=>x.e(c.key));
   m=/^(in|out)(\d)$/.exec(ep);
-  if(m){const ty=m[1]==='in'?'sw':'led',idx=[...new Set(x.t(ty).filter(c=>pn.has(x.e(c.key))).map(c=>c.r[1]))].sort((p,q)=>p-q)[+m[2]];
+  if(m){const ty=m[1]==='in'?'sw':'led',req=+m[2],conn=[...new Set(x.t(ty).filter(c=>pn.has(x.e(c.key))).map(c=>c.r[1]))].sort((p,q)=>p-q);
+    const total=m[1]==='in'?(exp?exp.ins.length:1):(exp?exp.outs.length:1);
+    const idx=(conn.length>=total&&conn[req]!==undefined)?conn[req]:req;
     return idx===undefined?[]:x.t(ty).filter(c=>c.r[1]===idx).map(c=>x.e(c.key))}
   return [];
 };

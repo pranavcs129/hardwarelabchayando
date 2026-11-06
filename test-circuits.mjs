@@ -104,6 +104,12 @@ export async function testCircuit(expId, port) {
       T.addWire(swNode(0), pinNode(1));
       T.addWire(swNode(2), pinNode(2));
 
+      // Verify guide successfully verified both wires and advanced past Step 3
+      const gdText = document.getElementById('gd')?.innerText || '';
+      if (!gdText.includes('Gate 2') && !gdText.includes('Step 4')) {
+        return { ok: false, error: 'Guide failed to verify x0 wire on Step 3: ' + gdText.slice(0, 200) };
+      }
+
       // Gate 2: x1 -> pin 4, pin 3 -> pin 5, pin 6 -> LED 0
       T.addWire(swNode(1), pinNode(4));
       T.addWire(pinNode(3), pinNode(5));

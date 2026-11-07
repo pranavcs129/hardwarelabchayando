@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "3D Digital IC Trainer Lab - Wire logic ICs on a breadboard and verify circuits",
   "scripts": {
-    "test": "node test-circuits.mjs && node test-ui.mjs",
+    "test": "node test-circuits.mjs && node test-74151.mjs && node test-ui.mjs",
     "test:circuits": "node test-circuits.mjs",
+    "test:74151": "node test-74151.mjs",
     "test:ui": "node test-ui.mjs"
   },
   "keywords": [

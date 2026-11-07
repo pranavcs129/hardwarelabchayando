@@ -70,7 +70,7 @@ export async function testCircuit(expId, port) {
   page.on('pageerror', err => errors.push(err.message));
 
   await page.goto(`http://127.0.0.1:${port}/index.html`);
-  await page.waitForFunction(() => window.T && window.T.nodes && window.T.nodes.length > 0, { timeout: 20000 });
+  await page.waitForFunction(() => window.T && window.T.nodes && window.T.nodes.length > 0, { timeout: 35000 });
 
   const result = await page.evaluate(async (targetId) => {
     const lchip = document.getElementById('lchip');

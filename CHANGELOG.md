@@ -2,6 +2,15 @@
 
 All notable changes to the 3D Digital IC Trainer web application are documented below.
 
+## [1.1.6] - 2026-11-07
+
+### 74151 8-to-1 Multiplexer / Data Selector IC
+- **Accurate Logic Simulation (`hn`)**: Fully modeled the 74151 8-to-1 Data Selector / Multiplexer with active-low strobe/enable $\bar{G}$ (pin 7), select inputs $C, B, A$ (pins 9, 10, 11), data inputs $D_0 \dots D_7$ (pins 4, 3, 2, 1, 15, 14, 13, 12), true output $Y$ (pin 5), and inverted output $W$ (pin 6). When $\bar{G} = 1$, $Y = 0$ and $W = 1$; when $\bar{G} = 0$, $Y = D_{CBA}$ and $W = \overline{D_{CBA}}$.
+- **16-Pin DIP Package Architecture (`Af` & `Ln`)**: Extended breadboard chip generation and hole coordinate mapping to dynamically support 16-pin DIP packages (pins 1–8 bottom row, pins 9–16 top row) with precise lead positioning, body width scaling, and printed `SN74151N` texture.
+- **Circuit Analysis & Diagnostics (`analyse`)**: Added custom power pin checks for 16-pin ICs (pin 16 to +5V, pin 8 to GND), floating input detection across pins [1, 2, 3, 4, 7, 9, 10, 11, 12, 13, 14, 15], and output bus conflict/forcing checks on pins 5 and 6.
+- **Toolbar & Component Storage Drawer**: Added `74151` button to the bottom dock toolbar (`74151 8-MUX`) and updated the 3D component storage tray with 4-column partitioning, tray dividers, and 3D 16-pin chip models.
+- **Dedicated Automated Test Suite (`test-74151.mjs`)**: Added automated Playwright tests validating physical pin coordinates, active select logic, inverted output logic, strobe disabling, and toolbar integration.
+
 ## [1.1.5] - 2026-11-07
 
 ### Analytics Integration

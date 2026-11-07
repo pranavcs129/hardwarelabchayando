@@ -18,5 +18,8 @@
   "license": "MIT",
   "devDependencies": {
     "playwright": "^1.65.0"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
   }
 }

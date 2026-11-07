@@ -2,6 +2,12 @@
 
 All notable changes to the 3D Digital IC Trainer web application are documented below.
 
+## [1.1.5] - 2026-11-07
+
+### Analytics Integration
+- **Vercel Web Analytics**: Installed `@vercel/analytics` and added the native Vercel Analytics tracking snippet (`/_vercel/insights/script.js` with queue queueing on `window.va`) directly into `index.html`. Automatically collects visitor counts, pageviews, and devices on Vercel without requiring a bundler.
+- **Local Test Mocking**: Mocked `/_vercel/insights/script.js` in `test-circuits.mjs` and `test-ui.mjs` to keep local Playwright runs fast and free of 404 network warnings.
+
 ## [1.1.4] - 2026-11-06
 
 ### Step-by-Step Lab Guide Wire Checker Bug Fix

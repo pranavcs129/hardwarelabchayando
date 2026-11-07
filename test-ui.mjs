@@ -19,6 +19,11 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
   let cleanPath = req.url.split('?')[0];
   if (cleanPath === '/') cleanPath = '/index.html';
+  if (cleanPath === '/_vercel/insights/script.js') {
+    res.writeHead(200, { 'Content-Type': 'text/javascript' });
+    res.end('/* vercel analytics mock */');
+    return;
+  }
   const filePath = path.join(__dirname, cleanPath);
   if (!fs.existsSync(filePath)) {
     res.writeHead(404);
